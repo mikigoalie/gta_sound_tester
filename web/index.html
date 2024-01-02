@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dictionary</title>
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="search-box">
+        <input type="text" placeholder="type sound or ref name for search" />
+        <i class="search fa-solid fa-magnifying-glass"></i>
+
+        <i class="stop fa-solid fa-volume-xmark"></i>
+      </div>
+
+
+      <div class="soundlist">
+        
+        <div class="sound" id="1">
+          <p>1</p>
+          <p>1st_Person_Transition</p>
+          <p>PLAYER_SWITCH_CUSTOM_SOUNDSET</p>
+          <span class="controls">
+            <i class="play fa-solid fa-volume-low"></i>
+            <i class="copy fa-solid fa-file-import"></i>
+          </span>
+
+        </div>
+
+        <div class="sound" id="2">
+          <p>2</p>
+          <p>FocusOut</p>
+          <p>HintCamSounds</p>
+          <i class="play fa-solid fa-volume-low"></i>
+          <i class="copy fa-solid fa-file-import"></i>
+        </div>
+
+        <div class="sound" id="3">
+          <p>3</p>
+          <p>SELECT</p>
+          <p>HUD_FRONTEND_DEFAULT_SOUNDSET</p>
+          <i class="play fa-solid fa-volume-low"></i>
+          <i class="copy fa-solid fa-file-import"></i>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/script.js"></script>
+  </body>
+</html>

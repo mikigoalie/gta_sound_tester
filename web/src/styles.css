@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,100;1,200&display=swap");
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  --dark1: #141517;
+  --dark2: #1f1f1f;
+  --dark3: #2e2e2e;
+  --gray1: #25262b;
+  --gray2: #495057;
+  --gray3: #adb5bd;
+  --blue1: #364fc7;
+  --blue2: #3b5bdb;
+  --blue3: #4263eb;
+  --blue4: #748ffc;
+  color: var(--gray3);
+  scroll-behavior: smooth;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--dark3);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--blue2);
+  border-radius: 20px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  opacity: 0;
+}
+
+.container {
+  background-color: var(--dark1);
+  height: 30rem;
+  width: 60rem;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(10, 10, 10, 0.9);
+}
+
+.search-box {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.search-box input {
+  background-color: #17181a;
+  outline: 1px solid var(--gray2);
+  border: none;
+  caret-color: var(--blue1);
+
+  padding: 0.5rem;
+  width: 50%;
+  border-radius: 0.5rem;
+}
+
+.search-box input:focus {
+  background-color: var(--gray1);
+}
+
+.soundlist {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  height: 75%;
+  overflow-y: auto;
+  row-gap: 1rem;
+  background: #17181a;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.sound {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.sound p {
+  width: 15rem;
+  align-items: center;
+}
+
+.sound i {
+  width: 1rem;
+  align-items: center;
+}
+
+.sound p:first-child {
+  width: 1rem;
+}
+
+.sound p:nth-child(2),
+.sound p:nth-child(3) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.sound p:nth-child(2):hover,
+.sound p:nth-child(3):hover {
+  text-overflow: unset;
+  overflow: visible;
+}
+.sound p:nth-child(4),
+.sound p:nth-child(5) {
+  width: 1rem;
+}
+
+i {
+  color: var(--blue2);
+  transition: transform 200ms ease-in-out;
+}
+
+i:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+}

@@ -1,6 +1,7 @@
 local interfaceReady = false
 local soundIds = {}
 RegisterNUICallback('loaded', function(data, cb)
+    print('LOADED')
     interfaceReady = true
     cb(1)
 end)
@@ -20,16 +21,18 @@ end CreateThread(loaded)
 
 RegisterNUICallback('playSound', function(data, cb)
     local soundHandle = GetSoundId()
-    soundIds[soundHandle] = true
+    soundIds[soundHandle] = { audioName = data.audioName, audioRef = data.audioRef, audioId = data.audioId }
+
     PlaySoundFrontend(soundHandle, data.audioName, data.audioRef, true)
     ReleaseSoundId(soundHandle)
---[[     CreateThread(function()
+
+    CreateThread(function()
         while not HasSoundFinished(soundHandle) do
             Wait(100)
         end
 
         SendNUIMessage({ action = "soundFinished", soundId = data.audioId })
-    end) ]]
+    end)
     cb(1)
 end)
 

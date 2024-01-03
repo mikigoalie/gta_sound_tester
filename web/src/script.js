@@ -64,12 +64,10 @@ window.addEventListener("message", (e) => {
   const action = e.data.action;
 
   if (action === "soundFinished") {
-    const element = $(`.sound#${e.data.soundId} .controls i:eq(1)`);
-    element.addClass("fa-solid fa-volume-low");
+    const element = $(`.sound#${e.data.soundId} .controls i:eq(0)`);
     if (!element.data("savedClass")) return;
-
-    // Remove all classes and add the saved class
     element.removeClass().addClass(element.data("savedClass"));
+    element.removeData("savedClass");
   } else if (action === "loadSounds") {
     const soundList = e.data.data;
     $(".soundlist").empty();
@@ -86,6 +84,38 @@ window.addEventListener("message", (e) => {
         </span>
       </div>
     `);
+    });
+
+    $(".copy").on("click", function (event) {
+      const element = $(this);
+      if (element.data("savedClass")) return;
+      const elementClass = element.attr("class");
+      element.removeClass(element.data("savedClass"));
+      element.addClass("fa-solid fa-check");
+  
+      setTimeout(() => {
+        element.removeClass("fa-solid fa-check");
+        element.addClass(elementClass);
+        element.removeData("savedClass");
+      }, 1000);
+  
+      copyText(element);
+    });
+  
+    $(".play").on("click", function (event) {
+      const element = $(this);
+      if (!element.data("savedClass")) {
+        element.data("savedClass", element.attr("class"));
+        element.removeClass(element.data("savedClass"));
+        element.addClass("fa-solid fa-volume-high");
+      }
+  
+      const parentDiv = $(element).parent().parent();
+      sendEvent("playSound", {
+        audioId: parentDiv.find("p:eq(0)").text(),
+        audioName: parentDiv.find("p:eq(1)").text(),
+        audioRef: parentDiv.find("p:eq(2)").text(),
+      });
     });
   } else if (action === "displayInterface") {
     const shouldOpen = e.data.open;
@@ -105,36 +135,4 @@ window.addEventListener("message", (e) => {
       $(document).off('keydown');
     }
   }
-
-  $(".copy").on("click", function (event) {
-    const element = $(this);
-    if (element.data("savedClass")) return;
-    const elementClass = element.attr("class");
-    element.removeClass(element.data("savedClass"));
-    element.addClass("fa-solid fa-check");
-
-    setTimeout(() => {
-      element.removeClass("fa-solid fa-check");
-      element.addClass(elementClass);
-      element.removeData("savedClass");
-    }, 1000);
-
-    copyText(element);
-  });
-
-  $(".play").on("click", function (event) {
-    const element = $(this);
-    if (!element.data("savedClass")) {
-      element.data("savedClass", element.attr("class"));
-      element.removeClass(element.data("savedClass"));
-      element.addClass("fa-solid fa-volume-high");
-    }
-
-    const parentDiv = $(element).parent().parent();
-    sendEvent("playSound", {
-      audioId: parentDiv.find("p:eq(0)").text(),
-      audioName: parentDiv.find("p:eq(1)").text(),
-      audioRef: parentDiv.find("p:eq(2)").text(),
-    });
-  });
 });

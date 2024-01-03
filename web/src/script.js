@@ -124,7 +124,7 @@ window.addEventListener("message", (e) => {
 
       $(document).on('keydown', function (event) {
         const key = event.key;
-        if (key == "Escape" || key == "Esc" || key == "Backspace") {
+        if (key == "Escape" || key == "Esc") {
           $('body').animate({ opacity: 0 });
           $(document).off('keydown');
           sendEvent("closeInterface");
